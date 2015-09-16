@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)https://web.archive.org/web/20150801231824/http://napchart.com/ -->
+<html hola_ext_inject="disabled" class="gr__web_archive_org"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<!-- <script type="text/javascript" async="" defer="" src="https://strengtrio.com/napchart-piwik/piwik/piwik.js"></script> -->
+
+    <title>Napchart - Polyphasic Sleep Visualizer</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/css.css">
+    <meta name="description" content="Polyphasic 24-hour clock web app">
+    <meta http-equiv="pragma" content="no-cache">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="js/declarations.js"></script>
+    <script src="js/standalonefunctions.js"></script>
+    <script src="js/inputhandler.js"></script>
+    <script src="js/dynamics.js"></script>
+    <script src="js/interactCanvas.js"></script>
+    <script src="js/statistics.js"></script>
+	   <script src="zeroclipboard/ZeroClipboard.min.js"></script>
+    <script src="js/js.js"></script>
+    <script src="js/draw.js"></script>
+    <script src="js/buttons.js"></script>
+    <script src="js/onload.js"></script>
+
+
+    <script src="js/debugger.js"></script>
+    <script>
+debugging = false;
+    </script>
+</head>
+
+<body>
+
+    <div id="debugger"></div>
+
+<div id="messageBar">
+<div id="innerMessageBar">
+	<span id="logo"><a href="./index_files/index.html">napchart</a></span>
+<div id="saveform">
+<div id="savebutton"><i id="saveicon" class="fa fa-link"></i>save</div>
+<input spellcheck="false" value="napchart.com/fT6Ty" type="text" id="saveURL">
+	<div id="copyLink"><i id="copyLinkIcon" class="fa fa-copy"></i></div>
+    </div>
+
+    <span id="shareButtons">
+    <a href="https://web.archive.org/web/20150801231824/http://napchart.com/#"><i class="fa fa-facebook-square"></i></a>
+        <a href="https://web.archive.org/web/20150801231824/http://napchart.com/#"><i class="fa fa-twitter"></i></a>
+        <a href="https://web.archive.org/web/20150801231824/http://napchart.com/#"><i class="fa fa-google-plus"></i></a>
+        <a href="https://web.archive.org/web/20150801231824/http://napchart.com/#"><i class="fa fa-pinterest"></i></a>
+    </span>
+
+
+<div class"sharebuttons"=""></div>
+
+</div>
+</div>
+
+
+
+
+
+
+<div id="wrapper-id" class="wrapper">
+    <!-- wraps around all elements-->
+<div class="menumoverViewport">
+
+<div id="smallscreen" class="section group">
+<div class="col span_4_of_4">
+<div id="toggleRight">Show control panel</div>
+<div id="toggleLeft">Show schedules</div>
+	</div></div>
+
+
+<div id="main_content" class="section group">
+
+
+
+
+
+	<div id="leftColumn" class="col span_1_of_4">
+        <div id="adderContainer">
+
+            <div class="adderButton" id="addNap"><span class="adderTitle">nap</span><span class="adderDesc">10 to 90 minutes</span></div>
+            <div class="adderButton" id="addSleep"><span class="adderTitle">core</span><span class="adderDesc">90 minutes or more</span></div>
+
+
+    </div>
+	<script>
+	window.sampleSchedules={
+	"monophasic":{"charlie":{"0":{"start":1410,"end":450}},"delta":{}},
+	"segmented":{"charlie":{"0":{"start":1320,"end":90},"1":{"start":210,"end":420}},"delta":{}},
+	"siesta":{"charlie":{"0":{"start":1380,"end":240}},"delta":{"0":{"start":780,"end":870}}},
+	"triphasic":{"charlie":{},"delta":{"0":{"start":870,"end":960},"1":{"start":390,"end":480},"2":{"start":1350,"end":0}}},
+	"everyman":{"charlie":{"0":{"start":1260,"end":30}},"delta":{"0":{"start":250,"end":270},"1":{"start":490,"end":510},"2":{"start":880,"end":900}}},
+	"dualcore1": {"charlie":{"0":{"start":1320,"end":90},"1":{"start":390,"end":480}},"delta":{"0":{"start":960,"end":980}}},
+	"uberman":{"charlie":{},"delta":{"0":{"start":960,"end":980},"1":{"start":720,"end":740},"2":{"start":1200,"end":1220},"3":{"start":480,"end":500},"4":{"start":240,"end":260},"5":{"start":1440,"end":20}}}
+
+	}
+	</script>
+
+	<div id="sampleSchedules">
+	<div id="none" class=""></div>
+	<div id="sampleScheduleActive"></div>
+	<div id="monophasic" class="sampleSchedule">Monophasic</div>
+
+	<div id="segmented" class="sampleSchedule">Segmented</div>	<div id="siesta" class="sampleSchedule">Siesta</div>	<div id="dualcore1" class="sampleSchedule">Dual Core 1</div>	<div id="triphasic" class="sampleSchedule">Triphasic</div>	<div id="everyman" class="sampleSchedule">Everyman</div>	<div id="uberman" class="sampleSchedule">Uberman</div>		</div></div>
+	<div id="canvasCont" class="col span_2_of_4">
+	<div id="canvasInnerCont">
+	<div id="textDomContainer"></div>
+
+<div id="canvasImg"></div>
+
+            <canvas id="clockCanvas" width="590" height="590">
+            </canvas>
+
+            <canvas id="myCanvas" width="590" height="590">
+            </canvas>
+
+	</div>
+	</div>
+	<div id="controlPanelColumn" class="col span_1_of_4">
+                    <div class="adderButton" id="addWork"><span class="adderTitle">occupied</span><span class="adderDesc">Things that prevent you from sleep</span></div>
+ <br>
+	<input type="checkbox" id="lockSleep"><label for="lockSleep"> Move all sleep simultaneously</label>
+		<br><input type="checkbox" id="snapFive"><label for="snapFive"> Snap to every 5 minutes</label>
+		 <br>
+
+            <button id="removeAll" class="button">&gt;&gt; Remove all</button>
+
+                <div id="inputContainerSleeps">
+        </div>
+                <div id="inputContainerNaps"></div>
+                <div id="inputContainerWorks"></div>
+
+
+
+	</div>
+</div>
+    <div class="section group">
+	<div id="adderContainer" class="col span_4_of_4">
+<div class="statistics">
+                    <div class="statisticElement totalSleep">The site is just half complete right now. Stats will be added in the next version. (<del>14. march</del> just kidding)<br>Please read about polyphasic sleep before attempting.
+                    </div>
+
+                    <div style="display:none" class="moreFunFacts">
+                        <div class="statisticElement totalAwake">Time awake <span class="statisticSpan totalAwake"></span>
+                        </div>
+                        <div class="statisticElement timeSaved">Time saved <span class="statisticSpan timeSaved"></span>
+                        </div>
+                        <div class="statisticElement timeSavedYear">Time saved in a year <span class="statisticSpan timeSavedYear"></span>
+                        </div>
+                        <div class="statisticElement totalWork">Working <span class="statisticSpan totalWork"></span>
+                        </div>
+                        <div class="statisticElement freeTime">Free time <span class="statisticSpan freeTime"></span>
+                        </div>
+                    </div>
+
+        </div></div></div>
+
+
+</div></div>
+</body>
+
+
+
+</div></div>
+</html>
+
+<!--
+     FILE ARCHIVED ON 23:18:24 Aug 1, 2015 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 8:47:59 Sep 16, 2015.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
