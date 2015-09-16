@@ -308,7 +308,7 @@ ctx.restore();
 };
 
 function drawTimeHandles(){
-	// restacker();
+	restacker();
 dataKeys=Object.keys(data);
 for(d=0;d<dataKeys.length;d++){
 countKeys=Object.keys(data[dataKeys[d]]);
